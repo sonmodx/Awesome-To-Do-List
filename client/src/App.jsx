@@ -2,9 +2,21 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import styles from "./App.module.css";
 import Task from "./components/Task";
+import AlertBox from "./components/AlertBox";
+import EditTaskBox from "./components/EditTaskBox";
 
 function App() {
   const [tasks, setTasks] = useState([]);
+  const [showAlert, setShowAlert] = useState({
+    isShow: false,
+    id: null,
+    task: null,
+  });
+  const [editBox, setEditBox] = useState({
+    isShow: false,
+    id: null,
+    formData: null,
+  });
 
   const getAllTasks = async () => {
     try {
@@ -39,12 +51,53 @@ function App() {
     }
   };
 
+  const deleteTask = async (id) => {
+    try {
+      const res = await axios.delete(`http://localhost:3001/deleteTask/${id}`);
+      if (res.status === 200) {
+        const filterTask = tasks.filter((task) => task.id !== id);
+        setTasks(filterTask);
+      }
+    } catch (error) {
+      console.error("Error when delete task, error msg :", error.message);
+    }
+  };
+
+  const updateTask = async (id, formData) => {
+    try {
+      const res = await axios.patch(
+        `http://localhost:3001/updateTask/${id}`,
+        formData
+      );
+
+      if (res.status === 200) {
+        getAllTasks();
+      }
+    } catch (error) {
+      console.error("Error when update task, error msg :", error.message);
+    }
+  };
+
   useEffect(() => {
     getAllTasks();
   }, []);
 
   return (
     <div className={styles.app}>
+      {showAlert?.isShow && (
+        <AlertBox
+          showAlert={showAlert}
+          setShowAlert={setShowAlert}
+          deleteTask={deleteTask}
+        />
+      )}
+      {editBox?.isShow && (
+        <EditTaskBox
+          updateTask={updateTask}
+          editBox={editBox}
+          setEditBox={setEditBox}
+        />
+      )}
       <h1>TO-DO-LIST</h1>
       <h2>ADD TASK</h2>
       <form id="createdForm" onSubmit={addTask}>
@@ -85,9 +138,13 @@ function App() {
         {tasks?.map((task) => (
           <Task
             key={task.id}
+            id={task.id}
             task={task.task}
             description={task.description}
             deadline={task.deadline}
+            isDone={task.isDone}
+            setShowAlert={setShowAlert}
+            setEditBox={setEditBox}
           />
         ))}
       </div>

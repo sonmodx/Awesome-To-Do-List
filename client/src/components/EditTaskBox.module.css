@@ -1,0 +1,36 @@
+.editTaskBox {
+    composes: alertBox from "./AlertBox.module.css"
+}
+
+.editTaskBox .head {
+    font-size: var(--primary-fs);
+}
+
+.editTaskBox form {
+    font-size: var(--secondary-fs);
+}
+
+.editTaskBox form .inputField {
+    margin-top: 1em;
+    display: grid;
+    grid-template-columns: 1fr auto;
+
+}
+
+.editTaskBox form input {
+    font-size: var(--thirdary-fs);
+}
+
+
+
+.container {
+    composes: container from "./AlertBox.module.css"
+}
+
+.answer {
+    composes: answer from "./AlertBox.module.css"
+}
+
+.cancel {
+    composes: reject from "./AlertBox.module.css"
+}

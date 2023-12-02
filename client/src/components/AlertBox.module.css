@@ -1,0 +1,64 @@
+.alertBox {
+    position: fixed;
+    background-color: rgba(0, 0, 0, 0.6);
+    inset: 0;
+    display: grid;
+    place-items: center;
+    z-index: 1;
+}
+
+.alertBox .container {
+   background-color: var(--snow-white);
+   padding: 2rem;
+   border-radius: 1em;
+   animation: popUp .4s alternate forwards;
+}
+
+.alertBox .question {
+    font-size: var(--primary-fs);
+}
+
+.alertBox .answer {
+    margin-top: 2rem;
+    display: flex;
+    justify-content: flex-end;
+    gap: 1em;
+}
+
+.alertBox .answer > * {
+    cursor: pointer;
+    font-size: var(--thirdary-fs);
+    font-weight: bolder;
+    padding: .5em 2em;
+    border: none;
+    background-color: var(--dark-grey-blue);
+    color: var(--snow-white);
+    transition: 0.3s ease;
+    border-radius: 1em;
+}
+
+.alertBox .answer .reject {
+    border: 2px solid var(--dark-grey-blue);
+    background-color: var(--snow-white);
+    color: var(--dark-grey-blue);
+}
+
+
+
+.alertBox .answer >*:is(:focus-visible, :hover) {
+    scale: 1.05;
+}
+
+@keyframes popUp {
+    0% {
+        opacity: 0;
+        scale: 0.3;
+    }
+    80% {
+        opacity: 1;
+        scale: 1.1;
+    }
+    100% {
+        scale: 1;
+    }
+}

@@ -41,19 +41,15 @@ app.post("/addTask", (req, res) => {
 });
 
 //UPDATE
-app.post("/updateTask/:id", (req, res) => {
-  const body = {
-    task: "Updated Task",
-    deadline: "2023-10-26",
-    description: "More Updateed!!",
-    isDone: false,
-  };
+app.patch("/updateTask/:id", (req, res) => {
+  const { task, deadline, description, isDone } = req.body;
+  console.log(req.body);
   const id = req.params.id;
   const sql =
     "UPDATE `todo-list` SET `task` = ?, `deadline` = ?, `description` = ?, `isDone` = ? WHERE id = ?";
   connection.query(
     sql,
-    [body.task, body.deadline, body.description, body.isDone, id],
+    [task, deadline, description, isDone, id],
     (error, data) => {
       if (error) return res.json(error);
 
@@ -63,13 +59,14 @@ app.post("/updateTask/:id", (req, res) => {
 });
 
 //DELETE
-app.post("/deleteTask/:id", (req, res) => {
+app.delete("/deleteTask/:id", (req, res) => {
   const sql = "DELETE FROM `todo-list` WHERE id = ?";
   const id = req.params.id;
   connection.query(sql, id, (error, data) => {
-    if (error) throw error;
-    console.log(`Successfully delete ${id} task`);
-    return res.end();
+    if (error) return res.status(500).json(error);
+    return res
+      .status(200)
+      .json({ message: `Successfully delete task id: ${id}` });
   });
 });
 

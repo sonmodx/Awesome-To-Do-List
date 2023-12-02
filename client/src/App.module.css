@@ -17,7 +17,7 @@
   box-sizing: border-box;
 }
 
-textarea, input[type="text"] {
+textarea, input[type="text"], input[type="date"] {
   margin-left: 1em;
   width: 100%;
   max-width: 150px;
