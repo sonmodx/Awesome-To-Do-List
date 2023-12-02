@@ -1,0 +1,84 @@
+.task {
+    width: 100%;
+    max-width: 400px;
+    background-color: var(--dark-grey-blue);
+    color: var(--grey-white);
+    padding: 2rem;
+    border-radius: 1rem;
+    margin-top: 2rem;
+    position: relative;
+}
+
+.task > *:not(:first-child) {
+    margin-top: .5em;
+}
+
+.task .head {
+    display: grid;
+    grid-template-columns: 1em auto;
+    align-items: center;
+    gap: .5em;
+    
+}
+
+.task .head input[type="checkbox"] {
+    -webkit-appearance: none;
+    appearance: none;
+    height: 30px;
+    background-image: url("../assets/arrow-down.svg");
+    background-size:100% 100%;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    transition: 0.5s ease-in-out;
+}
+
+.task .head input[type="checkbox"]:checked {
+    transform: rotate(180deg);
+}
+
+
+
+.task:has(.head input[type="checkbox"]:checked) .description {
+    height: 100%;
+    transform: scaleY(100%);
+}
+
+.taskTitle {
+    color: var(--snow-white);
+    font-size: var(--primary-fs);
+}  
+
+.task .description {
+    height: 0;
+    transform: scaleY(0);
+    transform-origin: top;
+    transition: 0.5s ease;
+}
+
+.task .deadline {
+    font-weight: bolder;
+}
+
+.edit {
+   
+}
+
+.delete {
+   
+}
+
+.buttonGroup {
+    position: absolute;
+    top: 0;
+    right: 0;
+    display: flex;
+    gap: .5em;
+    font-size: var(--secondary-fs);
+    margin-right: 1rem;
+}
+
+.buttonGroup > * {
+    cursor: pointer;
+    font-size: var(--thirdary-fs);
+}
