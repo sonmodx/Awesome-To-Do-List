@@ -8,16 +8,19 @@
 
 .editTaskBox form {
     font-size: var(--secondary-fs);
+    
+    
 }
 
 .editTaskBox form .inputField {
-    margin-top: 1em;
     display: grid;
     grid-template-columns: 1fr auto;
-
+    justify-items: flex-start;
+    margin-top: 1em;
+    font-size: var(--thirdary-fs);
 }
 
-.editTaskBox form input {
+.editTaskBox form input, textarea {
     font-size: var(--thirdary-fs);
 }
 
