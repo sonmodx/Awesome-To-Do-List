@@ -1,6 +1,5 @@
 .task {
-    width: 100%;
-    max-width: 400px;
+    width: min(90%, 400px);
     background-color: var(--dark-grey-blue);
     color: var(--grey-white);
     padding: 2rem;

@@ -6,9 +6,14 @@
   --grey-white: #c4cee0;
   --snow-white: #eef2fb;
 
-  --primary-fs: clamp(1rem, 1rem + 2vw, 2rem);
-  --secondary-fs: clamp(.5rem, .5rem + 1.5vw, 1.5rem);
+  --super-fs: clamp(1.5rem, 1.5rem + 2vw, 3rem);
+  --primary-fs: clamp(1rem, 1rem + 2vw, 2.2rem);
+  --secondary-fs: clamp(1rem, 1rem + 1.5vw, 1.75rem);
   --thirdary-fs: clamp(.5rem, .5rem + 1vw, 1rem);
+
+  --primary-fw: 900;
+  --secondary-fw: 700;
+  --thirdary-fw: 400;
 }
 
 *, *::before, *::after {
@@ -26,7 +31,8 @@ textarea, input[type="text"], input[type="date"] {
   border: none;
   background-color: gainsboro;
   border-radius: .5em;
-  font-family: sans-serif;
+  font-family: 'Merienda', cursive;
+  
 }
 
 textarea {
@@ -38,11 +44,75 @@ textarea {
 .app {
   min-height: 100vh;
   min-height: 100dvh;
+  padding-block: 4rem;
   background-color: var(--sky-blue);
-  font-family: sans-serif;
+  font-family: 'Merienda', cursive;
+  position: relative;
+  z-index: 1;
+}
+
+.app::before {
+  content: "";
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background-image: url("./assets/cloud-bg.png");
+  background-position: top center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  z-index: -1;
 }
 
 .taskContainer {
   display: grid;
   place-items: center;
+}
+
+form {
+  text-align: center;
+  color: var(--dark-blue);
+
+}
+
+form > * {
+  margin-top: 1em;
+}
+
+.toDoList {
+  text-align: center;
+  font-size: var(--super-fs);
+  color: var(--dark-blue);
+  font-weight: var(--primary-fw);
+}
+
+.allTasks, .addTask {
+  text-align: center;
+  margin-top: 2em;
+  font-weight: var(--secondary-fw);
+  font-size: var(--secondary-fs);
+  color: var(--dark-blue);
+}
+
+.submitBtn {
+  cursor: pointer;
+  font-size: var(--thirdary-fs);
+  font-weight: bolder;
+  padding: .5em 2em;
+  border: none;
+  background-color: var(--dark-grey-blue);
+  color: var(--snow-white);
+  transition: background-color, color .625s ease;
+  border-radius: 1em;
+}
+
+.submitBtn:is(:focus-visible, :hover) {
+  background-color: var(--snow-white);
+  box-shadow: inset 0px 0px 0px 2px var(--dark-grey-blue);
+  color: var(--dark-grey-blue);
+}
+
+.submitBtn:active {
+  box-shadow: 0px 0px 0px 2px var(--dark-grey-blue),
+  0px 0px 0px 4px var(--sky-blue),
+  0px 0px 0px 6px var(--dark-grey-blue);
 }

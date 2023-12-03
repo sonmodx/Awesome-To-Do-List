@@ -33,6 +33,7 @@ function App() {
     e.preventDefault();
     const task = e.target.task.value;
     const description = e.target.description.value || "No description";
+    console.log(description);
     const deadline = e.target.deadline.value;
     try {
       const res = await axios.post("http://localhost:3001/addTask", {
@@ -98,9 +99,10 @@ function App() {
           setEditBox={setEditBox}
         />
       )}
-      <h1>TO-DO-LIST</h1>
-      <h2>ADD TASK</h2>
+      <h1 className={styles.toDoList}>TO-DO-LIST</h1>
+
       <form id="createdForm" onSubmit={addTask}>
+        <h2 className={styles.addTask}>ADD TASK</h2>
         <div className={styles.inputField}>
           <label htmlFor="task">task :</label>
           <input
@@ -114,7 +116,6 @@ function App() {
         </div>
         <div className={styles.inputField}>
           <label htmlFor="description">description :</label>
-          <br />
           <textarea
             id="description"
             type="text"
@@ -128,12 +129,12 @@ function App() {
           <label htmlFor="deadline">deadline :</label>
           <input id="deadline" type="date" name="deadline" required />
         </div>
-        <button type="submit">SUBMIT</button>
+        <button className={styles.submitBtn} type="submit">
+          SUBMIT
+        </button>
       </form>
-      <br />
-      <hr />
-      <br />
-      <h2>ALL TASKS</h2>
+
+      <h2 className={styles.allTasks}>&lt;ALL TASKS &#47;&gt;</h2>
       <div className={styles.taskContainer}>
         {tasks?.map((task) => (
           <Task
